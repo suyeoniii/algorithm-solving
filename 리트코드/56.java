@@ -29,3 +29,31 @@ class Solution {
         return Arrays.copyOf(answer, length);
     }
 }
+
+// 개선된 버전 (ArrayList 사용)
+class Solution2 {
+    public int[][] merge(int[][] intervals) {
+        // 정렬
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+        List<int[]> merged = new ArrayList<>();
+
+        // 첫 번째 구간 추가
+        merged.add(intervals[0]);
+
+        for (int i = 1; i < intervals.length; i++) {
+            int[] last = merged.get(merged.size() - 1); // 마지막 요소
+
+            // 겹치는 경우, 최대값으로 병합
+            if (last[1] >= intervals[i][0]) {
+                last[1] = Math.max(last[1], intervals[i][1]);
+            } else {
+                // 안 겹치는 경우 새 구간 추가
+                merged.add(intervals[i]);
+            }
+        }
+
+        // List -> 배열 변환
+        return merged.toArray(new int[merged.size()][]);
+    }
+}
