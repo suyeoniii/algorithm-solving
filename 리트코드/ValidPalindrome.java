@@ -39,4 +39,43 @@ class ValidPalindrome {
         // 위에서 반환되지 않은 경우 모두 일치하므로 true
         return true;
     }
+
+    /**
+     * 투 포인터 사용 (성능 상위)
+     * ---
+     * 시간 복잡도
+     * - while문 - 2/N -> O(N)
+     * ---
+     * 공간 복잡도
+     * - left, right 변수 - 각각 1
+     * -> O(1)
+     */
+    class isPalindrome2 {
+        public boolean isPalindrome(String s) {
+            int left = 0;
+            int right = s.length() - 1;
+
+            while(left < right) {
+                // left 포인터가 가리키는 공백, 문자열 스킵
+                while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+                    left++;
+                }
+
+                // right 포인터가 가리키는 공백, 문자열 스킵
+                while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+                    right--;
+                }
+                // 소문자 기준으로 비교
+                if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+                    return false;
+                }
+
+                // 포인터 이동
+                left++;
+                right--;
+            }
+
+            return true;
+        }
+    }
 }
