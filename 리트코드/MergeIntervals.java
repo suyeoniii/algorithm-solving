@@ -1,5 +1,9 @@
-class Solution {
-    public int[][] merge(int[][] intervals) {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+class MergeIntervals {
+    public int[][] merge1(int[][] intervals) {
         int[][] answer = new int[10001][2]; // 정답 배열
 
         // 정렬
@@ -15,7 +19,7 @@ class Solution {
             // 겹치는 경우
             if (answer[length - 1][0] <= intervals[i][0] && intervals[i][0] <= answer[length - 1][1]) {
                 // 정답 배열 마지막 값 수정
-                answer[length - 1][1] = intervals[i][1];
+                answer[length - 1][1] = Math.max(answer[length - 1][1], intervals[i][1]);
             } else {
                 // 안 겹치는 경우
                 answer[length][0] = intervals[i][0];
@@ -28,11 +32,8 @@ class Solution {
         // 값이 있는 값까지 잘라서 반환
         return Arrays.copyOf(answer, length);
     }
-}
 
-// 개선된 버전 (ArrayList 사용)
-class Solution2 {
-    public int[][] merge(int[][] intervals) {
+    public int[][] merge2(int[][] intervals) {
         // 정렬
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
 

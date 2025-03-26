@@ -1,14 +1,7 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
+import data_structure.ListNode;
+
+class InsertionSortList {
+
     public ListNode insertionSortList(ListNode head) {
         
         ListNode pointer = head; // 위치를 찾을 노드
