@@ -23,7 +23,7 @@ class SolutionTest {
             "dig1 8 1 5 1",
             "dig2 3 6"
         };
-        assertArrayEquals(expected, solution.reorderLogFiles2(input));
+        assertArrayEquals(expected, solution.reorderLogFiles3(input));
     }
 
     @Test
@@ -38,7 +38,7 @@ class SolutionTest {
             "let2 art can",
             "dig1 8 1 5 1"
         };
-        assertArrayEquals(expected, solution.reorderLogFiles2(input));
+        assertArrayEquals(expected, solution.reorderLogFiles3(input));
     }
 
     @Test
@@ -56,7 +56,7 @@ class SolutionTest {
 
         // 성능 측정
         long startTime = System.nanoTime();
-        solution.reorderLogFiles2(largeLogs);
+        solution.reorderLogFiles3(largeLogs);
         long endTime = System.nanoTime();
         
         double durationInMillis = (endTime - startTime) / 1_000_000.0;
@@ -67,10 +67,10 @@ class SolutionTest {
     @Test
     void testEmptyAndSingleElement() {
         // 빈 배열 테스트
-        assertArrayEquals(new String[]{}, solution.reorderLogFiles2(new String[]{}));
+        assertArrayEquals(new String[]{}, solution.reorderLogFiles3(new String[]{}));
         
         // 단일 요소 테스트
         String[] singleInput = {"let1 art can"};
-        assertArrayEquals(singleInput, solution.reorderLogFiles2(singleInput));
+        assertArrayEquals(singleInput, solution.reorderLogFiles3(singleInput));
     }
 } 
